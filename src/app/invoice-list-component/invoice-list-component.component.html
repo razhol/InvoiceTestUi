@@ -1,0 +1,33 @@
+<div class="center-table">
+    <div>
+        <button (click)="presentAddComponent()" class="add-invoice">Add Invoice</button>
+        <add-invoice *ngIf="showAddInvoiceDIV" [keys]="keys" [enumStatuses]="enumStatuses"
+            (addInvoice)="addInvoice($event)" (close)="showAddInvoiceDIV = false"></add-invoice>
+    </div>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>date</th>
+                <th>Status</th>
+                <th>Amount</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of Invoices">
+                <td> <input type="date" [ngModel]="item.date | date:'yyyy-MM-dd'"
+                        (ngModelChange)="dateChange($event, item.id)" [disabled]="item.disabledEdit" /> </td>
+                <td>
+                    <select class="drop-down-statuses" [(ngModel)]="item.status" [disabled]="item.disabledEdit">
+                        <option *ngFor="let key of keys" [value]="key" [label]="enumStatuses[key]"></option>
+                    </select>
+                </td>
+                <td> <input type="number" [(ngModel)]="item.amount" [disabled]="item.disabledEdit" /> </td>
+                <td><button (click)="editOrSaveInvoice(item)" class="button-style">{{ item.disabledEdit? 'Edit' : 'Save'
+                        }}</button></td>
+                <td><button (click)="deleteInvoice(item.id)" class="button-style">delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

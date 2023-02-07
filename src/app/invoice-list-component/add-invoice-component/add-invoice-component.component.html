@@ -1,0 +1,11 @@
+<div class="add-invoice-div">
+    <input placeholder = "date" type="date" class="field-add" [value] ="newInvoice?.date | date:'yyyy-MM-dd'" (ngModelChange)="valueChange($event,'date')"/>
+    <select class = "drop-down-statuses field-add" [(ngModel)] ="newInvoice.status">
+        <option *ngFor="let key of keys" [value]="key" [label]="enumStatuses[key]"></option>
+    </select> 
+    <input placeholder = "Amount" type="number" class="field-add" [ngModel] = "newInvoice?.amount" (ngModelChange)="valueChange($event,'amount')"/>
+    <div class = "row-buttons">
+        <button (click) = "addInvoice.emit(newInvoice)" class="add-invoice add-invoice-button">Add</button>
+        <button (click) = "close.emit()" class="add-invoice close-invoice-button">Close</button>
+    </div>
+</div>
