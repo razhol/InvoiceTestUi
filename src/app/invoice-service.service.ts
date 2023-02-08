@@ -14,7 +14,6 @@ export class InvoiceService {
     return this.http.get(`${this.baseURL}`)
  }
  postInvoice(data: InvoiceObject): Observable<any> {
-  console.log(data)
   return this.http.post(`${this.baseURL}`, data)
  }
  
