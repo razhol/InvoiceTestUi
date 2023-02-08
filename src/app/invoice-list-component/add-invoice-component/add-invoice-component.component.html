@@ -1,5 +1,5 @@
 <div class="add-invoice-div">
-    <input placeholder = "date" type="date" class="field-add" [value] ="newInvoice?.date | date:'yyyy-MM-dd'" (ngModelChange)="valueChange($event,'date')"/>
+    <input placeholder = "date" type="date" class="field-add" [ngModel] ="newInvoice?.date | date:'yyyy-MM-dd'" (ngModelChange)="valueChange($event,'date')"/>
     <select class = "drop-down-statuses field-add" [(ngModel)] ="newInvoice.status">
         <option *ngFor="let key of keys" [value]="key" [label]="enumStatuses[key]"></option>
     </select> 
